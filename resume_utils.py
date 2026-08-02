@@ -41,10 +41,10 @@ def analyze_resume_with_gemini(resume_text, job_description=""):
             "GEMINI_API_KEY is not set. Add it to your environment "
             "before running the analysis."
         )
-
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
 
+    model = genai.GenerativeModel("gemini-2.5-flash")
+   
     prompt = f"""
 You are an ATS (Applicant Tracking System) resume evaluator.
 
