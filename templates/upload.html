@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Upload Resume{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card p-4">
+      <h3 class="mb-3">Upload Your Resume</h3>
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label">Resume file (PDF or DOCX)</label>
+          <input type="file" name="resume" accept=".pdf,.docx" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Job Description (optional, improves accuracy)</label>
+          <textarea name="job_description" class="form-control" rows="5"
+                    placeholder="Paste the job description here for a more targeted analysis..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">
+          Analyze Resume
+        </button>
+      </form>
+      
+      <p class="text-muted small mt-3 mb-0">
+        This may take a few seconds while the AI analyzes your resume.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Analysis Report{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card p-4 text-center mb-4">
+      <h4 class="mb-3">{{ report.filename }}</h4>
+      {% set score = report.ats_score or 0 %}
+      <div class="score-circle"
+           style="background-color: {{ '#28a745' if score >= 70 else ('#ffc107' if score >= 40 else '#dc3545') }};">
+        {{ score }}%
+      </div>
+      <p class="text-muted">ATS Compatibility Score</p>
+    </div>
+
+    <div class="card p-4 mb-4">
+      <h5>🧩 Missing Skills</h5>
+      {% if missing_skills %}
+        <div>
+          {% for skill in missing_skills %}
+            <span class="badge bg-danger me-1 mb-1">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted mb-0">No major missing skills detected. Nice work!</p>
+      {% endif %}
+    </div>
+
+    <div class="card p-4 mb-4">
+      <h5>💡 Suggestions to Improve</h5>
+      <ul class="mb-0">
+        {% for s in suggestions %}
+          <li>{{ s }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <a href="{{ url_for('upload') }}" class="btn btn-primary">Analyze Another Resume</a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

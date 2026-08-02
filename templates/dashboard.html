@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3>Welcome, {{ current_user.name }} 👋</h3>
+  <a href="{{ url_for('upload') }}" class="btn btn-primary">+ New Analysis</a>
+</div>
+
+{% if reports %}
+  <div class="row g-3">
+    {% for r in reports %}
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5>{{ r.filename }}</h5>
+          <p class="text-muted mb-1">Score: <strong>{{ r.ats_score }}/100</strong></p>
+          <p class="text-muted small">{{ r.created_at.strftime('%d %b %Y, %I:%M %p') }}</p>
+          <a href="{{ url_for('report', report_id=r.id) }}" class="btn btn-outline-primary btn-sm mt-2">View Report</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="text-center py-5">
+    <p class="text-muted">You haven't analyzed any resumes yet.</p>
+    <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload Your First Resume</a>
+  </div>
+{% endif %}
+{% endblock %}

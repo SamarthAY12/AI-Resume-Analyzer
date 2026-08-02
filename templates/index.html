@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Resume Analyzer</title>
-</head>
-<body>
-
-    <h1>Welcome to AI Resume Analyzer 🚀</h1>
-
-    <p>Industry-Level Flask Project</p>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home - AI Resume Analyzer{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="display-5 fw-bold">AI-Powered Resume Analyzer</h1>
+  <p class="lead text-muted mt-3">
+    Upload your resume and get an instant ATS score, missing skills,
+    and AI-driven suggestions to improve it — powered by Google Gemini.
+  </p>
+  {% if current_user.is_authenticated %}
+    <a href="{{ url_for('upload') }}" class="btn btn-primary btn-lg mt-3">Analyze My Resume</a>
+  {% else %}
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+  {% endif %}
+</div>
+{% endblock %}
