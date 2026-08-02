@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from config import Config
 from extensions import db, bcrypt, login_manager
 from models.user import User
+from models.report import Report
 from flask_login import login_user, login_required, logout_user
 from werkzeug.utils import secure_filename
 from resume_utils import extract_text_from_resume, analyze_resume_with_gemini
