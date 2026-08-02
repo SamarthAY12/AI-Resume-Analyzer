@@ -3,6 +3,7 @@ from config import Config
 from extensions import db, bcrypt, login_manager
 from models.user import User
 from models.report import Report
+
 from flask_login import login_user, login_required, logout_user
 from werkzeug.utils import secure_filename
 from resume_utils import extract_text_from_resume, analyze_resume_with_gemini
@@ -139,10 +140,11 @@ def logout():
     return redirect(url_for("home"))
 
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+# Create tables whenever the app starts
+with app.app_context():
+    db.create_all()
 
+if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000)),
